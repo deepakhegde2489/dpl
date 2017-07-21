@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="dpl_betting_tree2" model="ir.ui.view">
+        <field name="name">dpl.betting</field>
+        <field name="model">dpl.betting</field>
+        <field name="arch" type="xml">
+             <tree string="dpl betting">
+                 <field name="name"/>
+                 <field name="match"/>
+                 <field name="bet_on"/>
+                 <field name="amount"/>
+                 <field name="amount_won"/>
+             </tree>
+        </field>
+    </record>
+
+    <record id="view_dpl_betting_search" model="ir.ui.view">
+        <field name="name">dpl.betting.search</field>
+        <field name="model">dpl.betting</field>
+        <field name="arch" type="xml">
+            <search string="dpl betting">
+                <newline/>
+                 <group expand="0" string="Group By...">
+                     <filter string="Match" context="{'group_by':'match'}"/>
+                     <filter string="Bet by" context="{'group_by':'name'}"/>
+                     <filter string="Bet on" context="{'group_by':'bet_on'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="dpl_betting_form" model="ir.ui.view">
+        <field name="name">dpl.betting.form</field>
+        <field name="model">dpl.betting</field>
+        <field name="arch" type="xml">
+            <form string="Betting">
+                <sheet>
+                    <group>
+                        <field name="match"/>
+                        <field name="name"/>
+                        <field name="amount"/>
+                        <field name="bet_on"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="dpl_betting_action" model="ir.actions.act_window">
+        <field name="name">Betting</field>
+        <field name="res_model">dpl.betting</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'group_by':['match']}</field>
+        <field name="search_view_id" ref="view_dpl_betting_search" />
+    </record>
+
+    <!-- match view-->
+
+    <record id="dpl_match" model="ir.ui.view">
+        <field name="name">dpl.match.tree</field>
+        <field name="model">dpl.match</field>
+        <field name="arch" type="xml">
+             <tree string="dpl match">
+                <field name="name"/>
+                <field name="participant_1"/>
+                <field name="participant_2"/>
+                <field name="match_type"/>
+                <field name="winner"/>
+             </tree>
+        </field>
+    </record>
+
+    <record id="view_dpl_match_search" model="ir.ui.view">
+        <field name="name">dpl.match.search</field>
+        <field name="model">dpl.match</field>
+        <field name="arch" type="xml">
+            <search string="dpl betting">
+                <newline/>
+                 <group expand="0" string="Group By...">
+                     <!--<filter string="Participant 1" context="{'group_by':'participant_1'}"/>-->
+                     <!--<filter string="Participant 2" context="{'group_by':'participant_2'}"/>-->
+                     <filter string="Match type" context="{'group_by':'match_type'}"/>
+                     <filter string="Winner" context="{'group_by':'winner'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+
+    <record id="dpl_match_form" model="ir.ui.view">
+        <field name="name">dpl.match.form</field>
+        <field name="model">dpl.match</field>
+        <field name="arch" type="xml">
+            <form string="Betting">
+                <sheet>
+                    <group>
+                        <field name="participant_1"/>
+                        <field name="participant_2"/>
+                        <field name="match_type"/>
+                        <field name="winner"/>
+
+                    </group>
+                </sheet>
+                <notebook>
+                    <page string="Betting on this match">
+                        <field name="bet_amount" widget="one2many_list">
+                            <tree string="bets" editable="bottom">
+                                <field name="name" readonly="True"/>
+                                <field name="amount" sum="Total" readonly="False"/>
+                                <field name="bet_on" readonly="True" />
+                                <field name="amount_won" sum="Total"/>
+                            </tree>
+                        </field>
+                     </page>
+
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="dpl_match_action" model="ir.actions.act_window">
+        <field name="name">Matches</field>
+        <field name="res_model">dpl.match</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_dpl_match_search" />
+    </record>
+
+    <!--participants-->
+
+
+    <record id="dpl_participants_tree" model="ir.ui.view">
+        <field name="name">dpl.participants.tree</field>
+        <field name="model">dpl.participants</field>
+        <field name="arch" type="xml">
+             <tree string="dpl match">
+                 <field name="name"/>
+                 <field name="match_type"/>
+                 <field name="payement"/>
+                 <field name="balance_amount"/>
+                 <field name="registered"/>
+             </tree>
+        </field>
+    </record>
+
+    <record id="view_dpl_participantsh_search" model="ir.ui.view">
+        <field name="name">dpl.participants.search</field>
+        <field name="model">dpl.participants</field>
+        <field name="arch" type="xml">
+            <search string="dpl betting">
+                <newline/>
+                 <group expand="0" string="Group By...">
+                    <filter string="Match type" context="{'group_by':'match_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+
+    <record id="dpl_participants_form" model="ir.ui.view">
+        <field name="name">dpl.participants.form</field>
+        <field name="model">dpl.participants</field>
+        <field name="arch" type="xml">
+            <form string="Betting">
+                <sheet>
+                    <group>
+                         <field name="name"/>
+                         <field name="match_type"/>
+                         <field name="payement"/>
+                         <field name="registered"/>
+                         <field name="balance_amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_dpl_participants_graph">
+           <field name="name">dpl.participants</field>
+           <field name="model">dpl.participants</field>
+           <field name="arch" type="xml">
+                <graph string="Graph" type="bar">
+
+                         <field name="name"  type="row"/>
+                         <field name="balance_amount" type="measure"/>
+                </graph>
+            </field>
+    </record>
+
+
+    <record id="dpl_participants_action_view" model="ir.actions.act_window">
+        <field name="name">Participants</field>
+        <field name="res_model">dpl.participants</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_dpl_participantsh_search" />
+
+    </record>
+
+
+
+<menuitem name="Deepa Premier League"
+          id="dpl"
+          web_icon="base,static/description/settings.png"
+          sequence="0"
+          groups="base.group_erp_manager"/>
+    <menuitem name="DPL"
+          id="dpl_menu"
+          parent="dpl"/>
+
+    <menuitem name="Participants" string="Participants"
+          id="dpl_participants"
+          parent="dpl_menu" action="dpl_participants_action_view" sequence="0"/>
+
+
+    <menuitem name="Matches"
+          id="dpl_matches"
+          parent="dpl_menu" action="dpl_match_action" sequence="1"/>
+    <menuitem name="Betting"
+          id="dpl_betting"
+          parent="dpl_menu" action="dpl_betting_action" sequence="2"/>
+</odoo>
+
+

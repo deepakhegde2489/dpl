@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <body style="background-color:#37383d;">
+    <meta charset="UTF-8">
+    <!--<img src='/images/deepa.png'  style='width:304px;height:228px;' >-->
+    <img src="{{url_for('static', filename='deepa.png')}}" style="width:304px;height:228px;"  align="middle" class="align-center"/>
+    <h2 align="center" id="head">DPL BETTING DASHBOARD</h2>
+    <!--<meta http-equiv="refresh" content="2">-->
+    <style>
+        table, td, th {
+            border: 1px solid dimgray;
+            text-align: left;
+            font-family: "Trebuchet MS", Verdana, sans-serif;
+            color: darkgrey;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 15px;
+        }
+        img.align-center {
+         display: block;
+            margin: 0 auto;
+        }
+
+
+        #head {
+            font-family: "Trebuchet MS", Verdana, sans-serif;
+                color: #CCCCCC;
+                text-shadow: 0 1px 0 #999999, 0 2px 0 #888888,
+                         0 3px 0 #777777, 0 4px 0 #666666,
+                         0 5px 0 #555555, 0 6px 0 #444444,
+                         0 7px 0 #333333, 0 8px 7px rgba(0, 0, 0, 0.4),
+                         0 9px 10px rgba(0, 0, 0, 0.2);
+            }
+
+
+    </style>
+    <script>
+
+var height = document.body.scrollHeight;
+function scrollWin() {
+    window.scrollBy(0, 100);
+    height = height - 100;
+    if (height <
+        document.body.scrollTop) {
+        height = document.body.scrollHeight;
+        window.scrollTo(0, 0);
+        location.reload();
+    }
+
+    setTimeout(scrollWin,1000);
+
+}
+scrollWin();
+    </script>
+    <title>DPL</title>
+    {{ details|safe }}
+</head>
+
+</body>
+</html>
