@@ -42,4 +42,4 @@ def get_details():
     return render_template('details.html',details=final_details)
 
 if __name__ == '__main__':
-    app.run(debug=True,host='192.168.1.8')
+    app.run(debug=True,host='192.168.1.3')
